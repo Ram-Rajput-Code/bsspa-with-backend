@@ -1,0 +1,96 @@
+.aboutrow1 {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.abouttext {
+  width: 70%;
+
+}
+
+.aboutimage {
+  width: 25%;
+
+
+}
+
+.aboutimage img {
+  border: 1px solid rgb(170, 170, 173);
+  border-radius: 5px;
+}
+
+.aboutrow2 {
+  display: flex;
+  padding: 30px 10px;
+  justify-content: space-evenly;
+}
+
+.aboutmission {
+  border: 1px solid grey;
+  width: 400px;
+  padding: 10px;
+  background-color: beige;
+  border-radius: 5px;
+}
+
+.aboutvision {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: beige;
+  border-radius: 5px;
+}
+
+.aboutmission:hover,
+.aboutvision:hover {
+  background-color: rgb(169, 169, 179);
+}
+
+.aboutrow3 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.aboutcol1 {
+  padding: 10px;
+  color: white;
+  background-color: rgb(45, 62, 80);
+  margin: 5px;
+  border: 1px dotted;
+  width: 250px;
+}
+
+@media (max-width:768px) {
+  .aboutcol1 {
+    width: 300px;
+  }
+  
+
+  .abouttext {
+    width: 600px;
+
+  }
+
+  .aboutimage {
+    width: 300px;
+
+
+  }
+
+  .aboutrow1 {
+    flex-wrap: wrap;
+  }
+.aboutrow1.container{
+  background-color: aliceblue;
+}
+  .aboutrow2 {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+}

@@ -1,0 +1,16 @@
+.nav-link:hover {
+  color: rgb(
+    255,
+    166,
+    0
+  ) !important; /* Override Bootstrap's default hover color */
+}
+
+.hide {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .hide {
+    display: block !important;
+  }
+}

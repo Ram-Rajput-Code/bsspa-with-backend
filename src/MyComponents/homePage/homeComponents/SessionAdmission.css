@@ -1,0 +1,62 @@
+.background-image {
+  position: relative;
+  background-image: url("/public/images/body4bg.jpg"); 
+
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Adjust transparency with the alpha value */
+}
+
+.background-image p {
+  position: relative;
+  /* Ensures the text appears above the overlay */
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.background-image h4 {
+  position: relative;
+  /* Ensures the text appears above the overlay */
+  color: rgb(125, 225, 255);
+  text-align: center;
+  padding: 10px;
+}
+
+.background-image h1 {
+  position: relative;
+  /* Ensures the text appears above the overlay */
+  color: rgb(21, 232, 49);
+  text-align: center;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .background-image h4 {
+    font-size: small;
+  }
+
+  .background-image h1 {
+    font-size: medium;
+  }
+
+  .background-image {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    padding-top: 50px;
+  }
+}

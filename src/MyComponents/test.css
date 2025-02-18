@@ -1,0 +1,62 @@
+@media (max-width: 768px) {
+  .container {
+    background-color: lightgreen;
+  }
+}
+
+.row1 {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.col1 {
+  width: 200px;
+  border: 2px solid red;
+}
+
+@media (max-width:600px) {
+  .row1 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* General container styles */
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Collapsible div styles */
+.collapsible {
+  background-color: lightblue;
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Content that always remains visible */
+.content {
+  background-color: lightgreen;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+/* Media query to collapse the div */
+@media (max-width: 768px) {
+  .collapsible {
+    height: 0;
+    /* Set height to 0 to collapse */
+    opacity: 0;
+    /* Make it invisible */
+    overflow: hidden;
+    /* Hide overflowing content */
+    padding: 0;
+    /* Remove padding for better collapse effect */
+    border: none;
+    /* Optional: Remove border when collapsed */
+  }
+
+}
