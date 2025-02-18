@@ -10,7 +10,6 @@ import axios from "axios";
 
 export default function NavOne() {
   const [email, setEmail] = useState([]);
- 
 
   const fetchGeneral = async () => {
     try {
@@ -18,7 +17,7 @@ export default function NavOne() {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = response.data;
-      setEmail(data.Email); // Assuming 'email' is part of the response object
+      setEmail(data); // Assuming 'email' is part of the response object
     
     } catch (error) {
       console.error("Error fetching menu data:", error);
@@ -56,7 +55,7 @@ export default function NavOne() {
             sx={{ color: "white", fontSize: { xs: "0.9rem", md: "1rem" } }}
           >
             {/* bsspranavanandaacademy10@gmail.com */}
-            {email || "Loading..."}
+            {email.Phone || "Loading..."}
          
           </Typography>
         </Grid>
