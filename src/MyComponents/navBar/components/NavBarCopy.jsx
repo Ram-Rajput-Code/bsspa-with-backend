@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import axios from "axios";
 import Backend_Url from "../../../Config/BackendUrl";
 import token from "../../../Config/Token";
+import { Link } from "react-router-dom";
 
 const NavBarCopy = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -47,7 +48,7 @@ const NavBarCopy = () => {
             if (item.GruopName === "null") {
               return item;
             } else {
-              // setmenusub((prev) => [...prev, item]); //repeating sub menu
+             
               return null;
             }
           })
@@ -64,10 +65,6 @@ const NavBarCopy = () => {
     
   }, []);
 
-  // useEffect(() => {
-  //   console.log(submain);
-  // }, [submain]);
-
   const drawerContent = (
     <Box sx={{ width: 250 }} role="presentation">
       <Box
@@ -82,7 +79,7 @@ const NavBarCopy = () => {
       >
         <Box
           component="img"
-          // src="/images/logo.png"
+          
           src="/images/logo.png"
           alt="School Logofooter"
           sx={{
@@ -101,11 +98,21 @@ const NavBarCopy = () => {
             if (item) {
               return (
                 <Box>
-                  {item.Category_sub}
+                  <Link to={`/${item.URL}`} style={{ textDecoration: "none", color: "black", fontWeight: "bold", paddingLeft:"10px" }}>
+                {item.Category_sub}
+              </Link>
                   <Box>
                     {submain?.map((subitem, index) => {
                       if (subitem.GruopName === item.Category_sub) {
-                        return <List sx={{listStyle:"none", marginLeft:"20px"}}>{subitem.Category_sub}</List>;
+                        return <List sx={{listStyle:"none", marginLeft:"20px"}}>
+                          <Link
+                      key={index}
+                      to={`/${subitem.URL}`}
+                      style={{ display: "block", textDecoration: "none", color: "black", marginLeft: "20px" }}
+                    >
+                      {subitem.Category_sub}
+                    </Link>
+                        </List>;
                       }
                     })}
                   </Box>
@@ -155,16 +162,26 @@ const NavBarCopy = () => {
           {menumain?.map((item, index) => {
             if (item) {
               return (
-                <div>
-                  {item.Category_sub}
-                  <div>
+                <Box>
+                  <Link to={`/${item.URL}`} style={{ textDecoration: "none", color: "black", fontWeight: "bold", paddingLeft:"10px" }}>
+                {item.Category_sub}
+              </Link>
+                  <Box>
                     {submain?.map((subitem, index) => {
                       if (subitem.GruopName === item.Category_sub) {
-                        return <List sx={{listStyle:"none", marginLeft:"20px"}}>{subitem.Category_sub}</List>;
+                        return <List sx={{listStyle:"none", marginLeft:"20px"}}>
+                          <Link
+                      key={index}
+                      to={`/${subitem.URL}`}
+                      style={{ display: "block", textDecoration: "none", color: "black", marginLeft: "20px" }}
+                    >
+                      {subitem.Category_sub}
+                    </Link>
+                        </List>;
                       }
                     })}
-                  </div>
-                </div>
+                  </Box>
+                </Box>
               );
             }
           })}

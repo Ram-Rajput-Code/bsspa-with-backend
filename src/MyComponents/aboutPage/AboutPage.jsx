@@ -11,6 +11,7 @@ import Members from "./components/Members";
 import NavBar from "../navBar/components/NavBar";
 import NavOne from "../navBar/components/NavOne";
 import VisionMission from "../homePage/homeComponents/VisionMission";
+import NavBarCopy from "../navBar/components/NavBarCopy";
 
 const AboutPage = () => {
   const aboutBannerRef = useRef(null);
@@ -47,6 +48,19 @@ const AboutPage = () => {
       <NavOne />
       {refsReady && (
         <NavBar
+          aboutBannerRef={aboutBannerRef}
+          aboutSchoolRef={aboutSchoolRef}
+          founderBSSPARef={founderBSSPARef}
+          founderSchoolRef={founderSchoolRef}
+          secretaryMessageRef={secretaryMessageRef}
+          principalMessageRef={principalMessageRef}
+          membersRef={membersRef}
+          visionMissionRef={visionMissionRef}
+          tenDevineMessageRef={tenDevineMessageRef}
+        />
+      )}
+      {refsReady && (
+        <NavBarCopy
           aboutBannerRef={aboutBannerRef}
           aboutSchoolRef={aboutSchoolRef}
           founderBSSPARef={founderBSSPARef}
