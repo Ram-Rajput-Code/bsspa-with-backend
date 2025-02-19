@@ -9,8 +9,8 @@ const NavBar = () => {
     <>
       <NavOne />
       <NavBar2 />
-      {/* <NavBarCopy />
-      <NavBarWithMap /> */}
+      <NavBarCopy />
+      {/* <NavBarWithMap /> */}
     </>
   );
 };

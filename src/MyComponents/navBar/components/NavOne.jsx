@@ -55,7 +55,7 @@ export default function NavOne() {
             sx={{ color: "white", fontSize: { xs: "0.9rem", md: "1rem" } }}
           >
             {/* bsspranavanandaacademy10@gmail.com */}
-            {email.Phone || "Loading..."}
+            {email.Email || "Loading..."}
          
           </Typography>
         </Grid>
