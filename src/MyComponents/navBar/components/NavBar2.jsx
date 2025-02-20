@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import {
   AppBar,
@@ -15,7 +17,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown I
 import axios from "axios";
 import Backend_Url from "../../../Config/BackendUrl";
 import token from "../../../Config/Token";
-import { NavLink, NavNavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavBar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -23,6 +25,7 @@ const NavBar2 = () => {
   const [submain, setMenusub] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null); // For Desktop Hover
   const [openMobileMenu, setOpenMobileMenu] = useState(null); // For Mobile Click
+  const location = useLocation(); // Get the current route
 
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
@@ -55,7 +58,7 @@ const NavBar2 = () => {
   }, []);
 
   return (
-    <AppBar position="sticky" top="0" sx={{ backgroundColor: "white" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "white" }}>
       <Toolbar>
         <Typography
           variant="h6"
@@ -76,11 +79,7 @@ const NavBar2 = () => {
         {/* Desktop Navigation */}
         <Box
           sx={{
-            display: {
-              xs: "none",
-              sm: "none",
-              md: "flex",
-            },
+            display: { xs: "none", sm: "none", md: "flex" },
             color: "black",
             fontWeight: "bold",
           }}
@@ -88,6 +87,13 @@ const NavBar2 = () => {
           {menumain?.map((item, index) => {
             const hasSubmenu = submain?.some(
               (subitem) => subitem.GruopName === item.Category_sub
+            );
+
+            // Check if any submenu is active
+            const isSubmenuActive = submain?.some(
+              (subitem) =>
+                subitem.GruopName === item.Category_sub &&
+                location.pathname === `/${subitem.URL}`
             );
 
             return (
@@ -98,7 +104,7 @@ const NavBar2 = () => {
                   px: 2,
                   display: "flex",
                   alignItems: "center",
-                  ...(hasSubmenu && { cursor: "pointer" }),
+                  cursor: hasSubmenu ? "pointer" : "default",
                 }}
                 onMouseEnter={() =>
                   hasSubmenu && setHoveredMenu(item.Category_sub)
@@ -107,16 +113,9 @@ const NavBar2 = () => {
               >
                 <NavLink
                   to={`/${item.URL}`}
-                  // style={{
-                  //   textDecoration: "none",
-                  //   color: "black",
-                  //   fontWeight: "bold",
-                  //   display: "flex",
-                  //   alignItems: "center",
-                  // }}
                   style={({ isActive }) => ({
                     textDecoration: "none",
-                    color: isActive ? "orange" : "black",
+                    color: isActive || isSubmenuActive ? "orange" : "black",
                     fontWeight: "bold",
                   })}
                 >
@@ -132,7 +131,6 @@ const NavBar2 = () => {
                       left: 0,
                       backgroundColor: "rgba(245, 242, 242, 0.8)",
                       boxShadow: 3,
-
                       minWidth: "250px",
                       maxWidth: "300px",
                       zIndex: 10,
@@ -148,7 +146,6 @@ const NavBar2 = () => {
                         <Box key={subIndex} sx={{ px: 2, py: 1 }}>
                           <NavLink
                             to={`/${subitem.URL}`}
-                            // style={{ textDecoration: "none", color: "black" }}
                             style={({ isActive }) => ({
                               textDecoration: "none",
                               color: isActive ? "orange" : "black",
@@ -176,16 +173,10 @@ const NavBar2 = () => {
         >
           <MenuIcon sx={{ color: "blue" }} />
         </IconButton>
-        <Drawer
-          anchor="left"
-          open={drawerOpen}
-          onClose={toggleDrawer(false)}
-          sx={{
-            "& .MuiDrawer-paper": {
-              backgroundColor: "rgba(255, 255, 255, 0.7)", // Makes drawer background transparent
-            },
-          }}
-        >
+        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)} sx={{
+             "& .MuiDrawer-paper": {
+               backgroundColor: "rgba(255, 255, 255, 0.7)", // Makes drawer background transparent             },
+        }}}>
           <Box sx={{ width: 250 }} role="presentation">
             <IconButton
               edge="end"
@@ -200,32 +191,18 @@ const NavBar2 = () => {
             >
               <CloseIcon />
             </IconButton>
-            {/* logo on top of the drawer */}
-            {/* <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "blue",
-                color: "white",
-                py: 0.6,
-                px: 2,
-              }}
-            >
-              <Box
-                component="img"
-                src="/images/logo.png"
-                alt="School Logo"
-                sx={{
-                  height: "50px",
-                  marginRight: "10px",
-                }}
-              />
-            </Box> */}
 
             <List>
               {menumain?.map((item, index) => {
                 const hasSubmenu = submain?.some(
                   (subitem) => subitem.GruopName === item.Category_sub
+                );
+
+                // Check if submenu is active
+                const isSubmenuActive = submain?.some(
+                  (subitem) =>
+                    subitem.GruopName === item.Category_sub &&
+                    location.pathname === `/${subitem.URL}`
                 );
 
                 return (
@@ -249,20 +226,22 @@ const NavBar2 = () => {
                     >
                       <NavLink
                         to={`/${item.URL}`}
-                        style={{
+                        
+                        style={({ isActive }) => ({
                           textDecoration: "none",
-                          color: "black", //text color on mobile view
-                          width: "100%",
+                          color: isActive || isSubmenuActive ? "orange" : "black",
+                          fontWeight: "bold",
+                           width: "100%",
                           display: "flex",
                           alignItems: "center",
-                        }}
+                        })}
                       >
                         {item.Category_sub}
                         {hasSubmenu && <ArrowDropDownIcon />}
                       </NavLink>
                     </ListItem>
 
-                    {/* Sub-menu for Mobile */}
+                    {/* Submenu for Mobile */}
                     {hasSubmenu && openMobileMenu === item.Category_sub && (
                       <Box sx={{ pl: 2 }}>
                         {submain
@@ -273,10 +252,12 @@ const NavBar2 = () => {
                             <ListItem key={subIndex}>
                               <NavLink
                                 to={`/${subitem.URL}`}
-                                style={{
+                                
+                                style={({ isActive }) => ({
                                   textDecoration: "none",
-                                  color: "black",
-                                }}
+                                  color: isActive ? "orange" : "black",
+                                  fontWeight: "bold",
+                                })}
                               >
                                 {subitem.Category_sub}
                               </NavLink>
