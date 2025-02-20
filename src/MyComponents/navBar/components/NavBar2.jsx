@@ -118,6 +118,7 @@ const NavBar2 = () => {
                     color: isActive || isSubmenuActive ? "orange" : "black",
                     fontWeight: "bold",
                   })}
+                  
                 >
                   {item.Category_sub}
                   {hasSubmenu && <ArrowDropDownIcon sx={{ ml: 0.5 }} />}
@@ -151,6 +152,7 @@ const NavBar2 = () => {
                               color: isActive ? "orange" : "black",
                               fontWeight: "bold",
                             })}
+                            onClick={() => setHoveredMenu(null)}
                           >
                             {subitem.Category_sub}
                           </NavLink>
@@ -235,7 +237,10 @@ const NavBar2 = () => {
                           display: "flex",
                           alignItems: "center",
                         })}
+                        onClick={() => setDrawerOpen(false)}
                       >
+                        
+
                         {item.Category_sub}
                         {hasSubmenu && <ArrowDropDownIcon />}
                       </NavLink>
@@ -258,6 +263,7 @@ const NavBar2 = () => {
                                   color: isActive ? "orange" : "black",
                                   fontWeight: "bold",
                                 })}
+                                onClick={() => setDrawerOpen(false)}
                               >
                                 {subitem.Category_sub}
                               </NavLink>
