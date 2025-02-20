@@ -1,16 +1,14 @@
 import React from "react";
-import NavBar2 from "./components/NavBar";
-import NavOne from "./components/NavOne";
-import NavBarCopy from "./components/NavBarCopy";
 
+import NavOne from "./components/NavOne";
+
+import NavBar2 from "./components/NavBar2";
 
 const NavBar = () => {
   return (
     <>
       <NavOne />
       <NavBar2 />
-      <NavBarCopy />
-      
     </>
   );
 };

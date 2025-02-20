@@ -5,7 +5,7 @@ import TenDevineMessage from "./homeComponents/TenDevineMessage";
 import VisionMission from "./homeComponents/VisionMission";
 import SessionAdmission from "./homeComponents/SessionAdmission";
 import PrincipalMessage from "./homeComponents/PrincipalMessage";
-
+import AboutSchool from "../aboutPage/components/AboutSchool";
 
 const HomePage = () => {
   return (

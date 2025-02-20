@@ -2,8 +2,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Academic from "./components/Academic";
 
-import Footer from "../Footer";
-import NavBar from "../navBar/NavBar";
 import AdmissionProcedure from "./components/AdmissionProcedure";
 import SchoolRules from "./components/SchoolRules";
 import GuidelinetoParents from "./components/GuidelinetoParent";
@@ -20,7 +18,7 @@ const AdmissionPage = () => {
 
   return (
     <>
-      <NavBar />
+     
       <BannerAdmissionPage />
       {/* Render components based on the URL */}
       {path.includes("academic") && <Academic />}
@@ -33,7 +31,7 @@ const AdmissionPage = () => {
       {path.includes("reg-form10and12") && <RegForm10and12 />}
       {path.includes("students-list") && <StudentsList />}
 
-      <Footer />
+    
     </>
   );
 };

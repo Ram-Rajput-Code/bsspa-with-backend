@@ -18,7 +18,7 @@ import Backend_Url from "../../../Config/BackendUrl";
 import token from "../../../Config/Token";
 import { Link } from "react-router-dom";
 
-const NavBarCopy = () => {
+const NavBar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menumain, setMenumain] = useState([]);
   const [submain, setMenusub] = useState([]);
@@ -56,7 +56,7 @@ const NavBarCopy = () => {
   }, []);
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white" }}>
+    <AppBar position="sticky" top="0" sx={{ backgroundColor: "white" }}>
       <Toolbar>
         <Typography
           variant="h6"
@@ -68,7 +68,7 @@ const NavBarCopy = () => {
             src="/images/logo.png"
             alt="School Logo"
             sx={{
-              height: "50px",
+              height: "60px",
               marginRight: "10px",
             }}
           />
@@ -126,7 +126,7 @@ const NavBarCopy = () => {
                       position: "absolute",
                       top: "100%",
                       left: 0,
-                      backgroundColor: "rgba(245, 242, 242, 0.5)",
+                      backgroundColor: "rgba(245, 242, 242, 0.8)",
                       boxShadow: 3,
                     
                       minWidth: "250px",
@@ -231,6 +231,7 @@ const NavBarCopy = () => {
                                 : item.Category_sub
                             )
                           : null
+                          
                       }
                       sx={{
                         fontWeight: "bold",
@@ -287,4 +288,4 @@ const NavBarCopy = () => {
   );
 };
 
-export default NavBarCopy;
+export default NavBar2;
