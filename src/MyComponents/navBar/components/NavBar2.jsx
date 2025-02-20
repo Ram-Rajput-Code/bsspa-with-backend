@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   AppBar,
@@ -11,12 +10,12 @@ import {
   ListItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown Icon
 import axios from "axios";
 import Backend_Url from "../../../Config/BackendUrl";
 import token from "../../../Config/Token";
-import { Link } from "react-router-dom";
+import { NavLink, NavNavLink } from "react-router-dom";
 
 const NavBar2 = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -106,19 +105,24 @@ const NavBar2 = () => {
                 }
                 onMouseLeave={() => hasSubmenu && setHoveredMenu(null)}
               >
-                <Link
+                <NavLink
                   to={`/${item.URL}`}
-                  style={{
+                  // style={{
+                  //   textDecoration: "none",
+                  //   color: "black",
+                  //   fontWeight: "bold",
+                  //   display: "flex",
+                  //   alignItems: "center",
+                  // }}
+                  style={({ isActive }) => ({
                     textDecoration: "none",
-                    color: "black",
+                    color: isActive ? "orange" : "black",
                     fontWeight: "bold",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
+                  })}
                 >
                   {item.Category_sub}
                   {hasSubmenu && <ArrowDropDownIcon sx={{ ml: 0.5 }} />}
-                </Link>
+                </NavLink>
 
                 {hasSubmenu && hoveredMenu === item.Category_sub && (
                   <Box
@@ -128,9 +132,9 @@ const NavBar2 = () => {
                       left: 0,
                       backgroundColor: "rgba(245, 242, 242, 0.8)",
                       boxShadow: 3,
-                    
+
                       minWidth: "250px",
-                      maxWidth:"300px",
+                      maxWidth: "300px",
                       zIndex: 10,
                       borderRadius: "5px",
                       padding: "5px",
@@ -142,12 +146,17 @@ const NavBar2 = () => {
                       )
                       ?.map((subitem, subIndex) => (
                         <Box key={subIndex} sx={{ px: 2, py: 1 }}>
-                          <Link
+                          <NavLink
                             to={`/${subitem.URL}`}
-                            style={{ textDecoration: "none", color: "black" }}
+                            // style={{ textDecoration: "none", color: "black" }}
+                            style={({ isActive }) => ({
+                              textDecoration: "none",
+                              color: isActive ? "orange" : "black",
+                              fontWeight: "bold",
+                            })}
                           >
                             {subitem.Category_sub}
-                          </Link>
+                          </NavLink>
                         </Box>
                       ))}
                   </Box>
@@ -180,14 +189,13 @@ const NavBar2 = () => {
           <Box sx={{ width: 250 }} role="presentation">
             <IconButton
               edge="end"
-             
               onClick={toggleDrawer(false)}
               sx={{
                 position: "absolute",
                 top: 10,
                 right: 10,
                 color: "black",
-                zIndex:22,
+                zIndex: 22,
               }}
             >
               <CloseIcon />
@@ -231,7 +239,6 @@ const NavBar2 = () => {
                                 : item.Category_sub
                             )
                           : null
-                          
                       }
                       sx={{
                         fontWeight: "bold",
@@ -240,7 +247,7 @@ const NavBar2 = () => {
                         alignItems: "center",
                       }}
                     >
-                      <Link
+                      <NavLink
                         to={`/${item.URL}`}
                         style={{
                           textDecoration: "none",
@@ -252,7 +259,7 @@ const NavBar2 = () => {
                       >
                         {item.Category_sub}
                         {hasSubmenu && <ArrowDropDownIcon />}
-                      </Link>
+                      </NavLink>
                     </ListItem>
 
                     {/* Sub-menu for Mobile */}
@@ -264,7 +271,7 @@ const NavBar2 = () => {
                           )
                           ?.map((subitem, subIndex) => (
                             <ListItem key={subIndex}>
-                              <Link
+                              <NavLink
                                 to={`/${subitem.URL}`}
                                 style={{
                                   textDecoration: "none",
@@ -272,7 +279,7 @@ const NavBar2 = () => {
                                 }}
                               >
                                 {subitem.Category_sub}
-                              </Link>
+                              </NavLink>
                             </ListItem>
                           ))}
                       </Box>
