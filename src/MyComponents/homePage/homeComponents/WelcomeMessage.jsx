@@ -5,12 +5,30 @@ import React, { useEffect, useState } from "react";
 
 import token from "../../../Config/Token";
 import Backend_Url from "../../../Config/BackendUrl";
+import axios from "axios";
 
 
 const WelcomeMessage = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [msg, setMsg] = useState([]);
+
+  const fetchmsg = async () => {
+    try {
+      const response1 = await axios.get(`${Backend_Url}/HpContentMaster/getall`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = response1.data;
+      setMsg(data); // Assuming 'email' is part of the response object
+    
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchmsg();
+  }, []);
 
   useEffect(() => {
     fetch(`${Backend_Url}/gallery/images/all`, {
@@ -83,6 +101,7 @@ const WelcomeMessage = () => {
         >
           {/* Left Side: Text Section */}
           <Grid item xs={12} md={6}>
+          {/* {msg.map((ms, index) => ( */}
             <Typography
               variant="body2"
               paragraph
@@ -91,26 +110,11 @@ const WelcomeMessage = () => {
                 fontSize: { xs: "0.7rem", md: "0.9rem" },
               }}
             >
-              Pranavananda Academy, run by Bharat Sevashram Sangha, with its
-              diversified academic activities in various parts of the country,
-              has come into existence in Raipur, commemorating the Centenary
-              Celebrations of Swami Pranavanandaji Maharaj. At present, the
-              school stands on a 5-acre plot of land donated by Shishu Shiksha
-              Samiti by virtue of the relentless efforts of a devotee of “Bharat
-              Sevashram Sangha,” located on VIP Road leading to Mana Airport.
-              The construction of the school started in April 1996, covering an
-              area of 82,200 sq. ft. to accommodate students from pre-primary to
-              class XII The aim of the academy is to grow in the field of
-              college education in all branches and disciplines and earn a
-              reputation as a Universal Pedestal of Learning. The Bharat
-              Sevashram Sangha, a philanthropic, charitable, socio-religious
-              organization founded over 80 years ago by Acharya Shrimat Swami
-              Parnavanandaji Maharaj, is dedicated to the well-being of mankind.
-              The Sangha has a wide missionary network and education projects,
-              with more than 60 branches and 600 Unity Centers across India and
-              abroad, including the UK, USA, Canada, South America, Guyana,
-              Trinidad, the Far-East, and Bangladesh.
+              Pranavananda Academy, run by Bharat Sevashram Sangha, with its diversified academic activities in various parts of the country, has come into existence in Raipur, commemorating the Centenary Celebrations of Swami Pranavanandaji Maharaj. At present, the school stands on a 5-acre plot of land donated by Shishu Shiksha Samiti by virtue of the relentless efforts of a devotee of “Bharat Sevashram Sangha,” located on VIP Road leading to Mana Airport. The construction of the school started in April 1996, covering an area of 82,200 sq. ft. to accommodate students from pre-primary to class XII.
+              The aim of the academy is to grow in the field of college education in all branches and disciplines and earn a reputation as a Universal Pedestal of Learning. The Bharat Sevashram Sangha, a philanthropic, charitable, socio-religious organization founded over 80 years ago by Acharya Shrimat Swami Parnavanandaji Maharaj, is dedicated to the well-being of mankind. The Sangha has a wide missionary network and education projects, with more than 60 branches and 600 Unity Centers across India and abroad, including the UK, USA, Canada, South America, Guyana, Trinidad, the Far-East, and Bangladesh.
+              {/* {ms.Content} */}
             </Typography>
+          {/* ))} */}
           </Grid>
 
           {/* Right Side: Image Section */}
