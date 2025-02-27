@@ -14,8 +14,6 @@ import axios from "axios";
 export default function Slider() {
   const [sliderImages, setSliderImages] = useState([]);
 
-  console.log(sliderImages);
-
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const nextSlide = () => {
